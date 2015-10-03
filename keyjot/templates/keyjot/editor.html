@@ -5,6 +5,7 @@
 		<style>
 			body{
 				margin: 0px;
+				overflow: hidden;
 			}
 		</style>
 	</head>
@@ -17,6 +18,13 @@
 				clientSideStorage: false,
 				focusOnLoad: true
 			}).load();
+
+			function resizeEditor(){
+				editor.getElement('container').style.height = (window.innerHeight) + 'px';
+				editor.reflow();
+			}
+			resizeEditor();
+			window.addEventListener('resize', resizeEditor);
 		</script>
 	</body>
 </html>
