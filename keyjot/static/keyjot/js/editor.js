@@ -7,6 +7,10 @@ var editor = new EpicEditor({
 	focusOnLoad: true
 }).load();
 
+$.get(window.location + '/get', function(data){
+	editor.importFile(filename, data);
+});
+
 // Resize the editor to fit the window size
 function resizeEditor(){
 	editor.getElement('container').style.height = (window.innerHeight) + 'px';

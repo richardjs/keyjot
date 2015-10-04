@@ -4,5 +4,6 @@ from django.contrib import admin
 import keyjot.views
 
 urlpatterns = [
-	url(r'^(\w+)$', keyjot.views.editor)
+	url(r'^(\w+)/get$', keyjot.views.get_data),
+	url(r'^(\w+)$', keyjot.views.editor),
 ]
