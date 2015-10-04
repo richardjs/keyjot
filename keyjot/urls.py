@@ -4,5 +4,5 @@ from django.contrib import admin
 import keyjot.views
 
 urlpatterns = [
-	url(r'^$', keyjot.views.test)
+	url(r'^(\w+)$', keyjot.views.editor)
 ]

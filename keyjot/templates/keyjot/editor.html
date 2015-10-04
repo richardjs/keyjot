@@ -11,20 +11,11 @@
 	</head>
 	<body>
 		<div id="epiceditor"></div>
-		<script src="{% static 'keyjot/lib/epiceditor-0.2.2/js/epiceditor.min.js' %}"></script>
 		<script>
-			var editor = new EpicEditor({
-				basePath: "{% static 'keyjot/lib/epiceditor-0.2.2/' %}",
-				clientSideStorage: false,
-				focusOnLoad: true
-			}).load();
-
-			function resizeEditor(){
-				editor.getElement('container').style.height = (window.innerHeight) + 'px';
-				editor.reflow();
-			}
-			resizeEditor();
-			window.addEventListener('resize', resizeEditor);
+			var EPICEDITOR_BASE = "{% static 'keyjot/lib/epiceditor-0.2.2/' %}";
+			var filename = "{{ filename }}";
 		</script>
+		<script src="{% static 'keyjot/lib/epiceditor-0.2.2/js/epiceditor.min.js' %}"></script>
+		<script src="{% static 'keyjot/js/editor.js' %}"></script>
 	</body>
 </html>
