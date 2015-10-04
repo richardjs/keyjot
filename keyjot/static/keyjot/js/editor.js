@@ -13,8 +13,8 @@ $.get(window.location + '/get', function(data){
 
 // Resize the editor to fit the window size
 function resizeEditor(){
-	editor.getElement('container').style.height = (window.innerHeight) + 'px';
+	$(editor.getElement('container')).css('height', (window.innerHeight) + 'px');
 	editor.reflow();
 }
 resizeEditor();
-window.addEventListener('resize', resizeEditor);
+$(window).on('resize', resizeEditor);
