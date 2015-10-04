@@ -7,6 +7,7 @@ var editor = new EpicEditor({
 	focusOnLoad: true
 }).load();
 
+// Load the file
 $.get(window.location + '/get', function(data){
 	editor.importFile(filename, data);
 });
@@ -18,3 +19,8 @@ function resizeEditor(){
 }
 resizeEditor();
 $(window).on('resize', resizeEditor);
+
+// Keyboard shortcuts
+$([editor.editorIframeDocument, editor.previewerIframeDocument]).on('keypress', function(event){
+	// TODO: here, make save functoin
+});
