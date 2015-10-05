@@ -20,3 +20,9 @@ def get_data(request, filename):
 		data = f.read()
 
 	return HttpResponse(data)
+
+def login(request):
+	if request.method == 'GET':
+		return render(request, 'keyjot/login.html');
+	
+	
