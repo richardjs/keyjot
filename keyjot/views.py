@@ -46,7 +46,7 @@ def login_form(request):
 
 	login(request, user)
 	
-	nextPage = ''
+	nextPage = '/home'
 	if 'next' in request.GET:
 		nextPage = request.GET['next']
 	return redirect(nextPage)

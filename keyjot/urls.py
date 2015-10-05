@@ -8,4 +8,5 @@ urlpatterns = [
 	url(r'^(\w+)/get$', keyjot.views.get_data),
 	url(r'^(\w+)/save$', keyjot.views.save_data),
 	url(r'^(\w+)$', keyjot.views.editor),
+	url(r'^$', keyjot.views.login_form),
 ]
