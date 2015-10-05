@@ -6,6 +6,16 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
+# Help function -- not a web view
+def get_file(username, filename, mode='r'):
+	user_dir = os.path.join(settings.DATA_DIR, username)
+	if not os.path.exists(user_dir):
+		os.makedirs(user_dir)
+
+	full_path = os.path.join(user_dir, filename+'.md')
+	if not os.path.exists(full_path):
+		open(full_path, 'w').close()
+	return open(full_path, mode)
 
 @login_required
 def editor(request, filename):
@@ -13,17 +23,16 @@ def editor(request, filename):
 
 @login_required
 def get_data(request, filename):
-	user_dir = os.path.join(settings.DATA_DIR, request.user.username)
-	if not os.path.exists(user_dir):
-		os.makedirs(user_dir)
-
-	full_path = os.path.join(user_dir, filename+'.md')
-	if not os.path.exists(full_path):
-		open(full_path, 'w').close()
-	with open(full_path, 'r') as f:
+	with get_file(request.user.username, filename) as f:
 		data = f.read()
-
 	return HttpResponse(data)
+
+@login_required
+def save_data(request, filename):
+	data = request.POST['data']
+	with get_file(request.user.username, filename, 'w') as f:
+		f.write(data)
+	return HttpResponse('ok')
 
 def login_form(request):
 	if request.method == 'GET':

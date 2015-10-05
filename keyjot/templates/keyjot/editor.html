@@ -11,12 +11,13 @@
 	</head>
 	<body>
 		<div id="epiceditor"></div>
-		<script>
-			var EPICEDITOR_BASE = "{% static 'keyjot/lib/epiceditor-0.2.2/' %}";
-			var filename = "{{ filename }}";
-		</script>
 		<script src="{% static 'keyjot/lib/jquery-1.11.3.min.js' %}"></script>
 		<script src="{% static 'keyjot/lib/epiceditor-0.2.2/js/epiceditor.min.js' %}"></script>
+		<script>
+			var EPICEDITOR_BASE = "{% static 'keyjot/lib/epiceditor-0.2.2/' %}";
+			var csrf_token = $("{% csrf_token %}").val();
+			var filename = "{{ filename }}";
+		</script>
 		<script src="{% static 'keyjot/js/editor.js' %}"></script>
 	</body>
 </html>
