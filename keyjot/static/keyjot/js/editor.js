@@ -47,15 +47,21 @@ $([editor.editorIframeDocument, editor.previewerIframeDocument]).on('keypress', 
 	}
 
 	switch(event.key){
-		case 's':
+		case 'o':
 			event.preventDefault();
-			saveFile();
-			break;
+			var toOpen = prompt('Name to open?');
+			if(toOpen.length){
+				window.location = toOpen;
+			}
 		case 'l':
 			event.preventDefault();
 			if(confirm('Really reload from server?')){
 				loadFile();
 			}
+			break;
+		case 's':
+			event.preventDefault();
+			saveFile();
 			break;
 	}
 });
