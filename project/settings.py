@@ -15,17 +15,18 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3p%_1m)4wyy+d9#tvjh*_^k2#73!4!i2a3ja4%dowscx^*&$o5'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# SECURITY WARNING: keep the secret key used in production secret!
+if DEBUG:
+	SECRET_KEY = '3p%_1m)4wyy+d9#tvjh*_^k2#73!4!i2a3ja4%dowscx^*&$o5'
+else:
+	SECRET_KEY = os.environ['SECRET_KEY']
+
 ALLOWED_HOSTS = []
+if not DEBUG:
+	assert ALLOWED_HOSTS
 
 
 # Application definition
@@ -103,5 +104,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+if not DEBUG:
+	STATIC_ROOT = ''
+	assert STATIC_ROOT
 
 LOGIN_URL = '/login'
+
+if not DEBUG:
+	CSRF_COOKIE_SECURE = True
+	SESSION_COOKIE_SECURE = True
